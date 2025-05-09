@@ -15,6 +15,9 @@ export default function ForumPage() {
   const [activeTab, setActiveTab] = useState("recent")
   const [posts, setPosts] = useState<any[]>([])
   const [showNewPostModal, setShowNewPostModal] = useState(false)
+  const [newTitle, setNewTitle] = useState("")
+  const [newCategory, setNewCategory] = useState("")
+  const [newContent, setNewContent] = useState("")
 
   useEffect(() => {
     // Simulate loading posts
@@ -102,6 +105,26 @@ export default function ForumPage() {
 
   const handlePostClick = (postId: string) => {
     router.push(`/forum/${postId}`)
+  }
+
+  const handlePublish = () => {
+    const newPost = {
+      id: (posts.length + 1).toString(),
+      title: newTitle,
+      content: newContent,
+      author: "Tu",
+      avatar: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974&auto=format&fit=crop",
+      likes: 0,
+      comments: 0,
+      isPopular: false,
+      category: newCategory,
+      time: "Agora mesmo",
+    }
+    setPosts([newPost, ...posts])
+    setShowNewPostModal(false)
+    setNewTitle("")
+    setNewCategory("")
+    setNewContent("")
   }
 
   if (loading) {
@@ -322,6 +345,8 @@ export default function ForumPage() {
                 <label className="block text-sm font-medium text-text mb-1">Título</label>
                 <Input
                   type="text"
+                  value={newTitle}
+                  onChange={(e) => setNewTitle(e.target.value)}
                   className="w-full border border-gray-200 rounded-lg"
                   placeholder="Escreve o título da tua discussão"
                 />
@@ -329,7 +354,9 @@ export default function ForumPage() {
 
               <div>
                 <label className="block text-sm font-medium text-text mb-1">Categoria</label>
-                <select className="w-full h-10 px-3 py-2 border border-gray-200 rounded-lg bg-white">
+                <select value={newCategory}
+                  onChange={(e) => setNewCategory(e.target.value)}
+                  className="w-full h-10 px-3 py-2 border border-gray-200 rounded-lg bg-white">
                   <option value="">Seleciona uma categoria</option>
                   <option value="iniciantes">Iniciantes</option>
                   <option value="avançado">Avançado</option>
@@ -341,6 +368,8 @@ export default function ForumPage() {
               <div>
                 <label className="block text-sm font-medium text-text mb-1">Conteúdo</label>
                 <textarea
+                  value={newContent}
+                  onChange={(e) => setNewContent(e.target.value)}
                   className="w-full h-32 px-3 py-2 border border-gray-200 rounded-lg resize-none"
                   placeholder="Descreve a tua dúvida ou discussão..."
                 ></textarea>
@@ -356,7 +385,7 @@ export default function ForumPage() {
                 <button
                   className="py-2 px-4 rounded-lg text-white font-medium"
                   style={{ backgroundColor: "var(--forum-color)" }}
-                  onClick={() => setShowNewPostModal(false)}
+                  onClick={handlePublish}
                 >
                   Publicar
                 </button>
