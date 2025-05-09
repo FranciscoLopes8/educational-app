@@ -1,15 +1,39 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Logo } from "@/components/logo"
 import Image from "next/image"
 import { BottomNavigation } from "@/components/bottom-navigation"
 import { Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 
+const generateRandomComments = (num: number) => {
+  const sampleComments = [
+    "Muito interessante! Nunca tinha pensado nisso.",
+    "Concordo plenamente com o que disseste.",
+    "Ótima explicação, obrigado!",
+    "Tenho a mesma dúvida! Alguém mais?",
+    "Gostei do ponto de vista, faz todo o sentido.",
+    "Acho que há uma abordagem diferente para isso.",
+    "Será que isso funciona na prática?",
+    "Gostava de saber mais sobre esse assunto.",
+    "Já passei por isso também. Boa sorte!",
+    "Que dica valiosa, vou tentar!"
+  ];
+
+  return Array.from({ length: num }, () => sampleComments[Math.floor(Math.random() * sampleComments.length)]);
+};
+
+const avatars = [
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1974&auto=format&fit=crop"
+];
+
 export default function ForumPage() {
   const router = useRouter()
+  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(true)
   const [activeCategory, setActiveCategory] = useState("all")
   const [activeTab, setActiveTab] = useState("recent")
@@ -18,9 +42,9 @@ export default function ForumPage() {
   const [newTitle, setNewTitle] = useState("")
   const [newCategory, setNewCategory] = useState("")
   const [newContent, setNewContent] = useState("")
+  const comments = JSON.parse(searchParams.get("comments") || "[]");
 
   useEffect(() => {
-    // Simulate loading posts
     const timer = setTimeout(() => {
       setPosts([
         {
@@ -104,8 +128,13 @@ export default function ForumPage() {
   }
 
   const handlePostClick = (postId: string) => {
-    router.push(`/forum/${postId}`)
-  }
+    const selectedPost = posts.find((post) => post.id === postId);
+    if (selectedPost) {
+      const comments = generateRandomComments(selectedPost.comments);
+      const queryString = new URLSearchParams({ comments: JSON.stringify(comments) }).toString();
+      router.push(`/forum/${postId}?${queryString}`);
+    }
+  };
 
   const handlePublish = () => {
     const newPost = {
@@ -394,6 +423,7 @@ export default function ForumPage() {
           </div>
         </div>
       )}
+
 
       {/* Bottom Navigation */}
       <BottomNavigation activeTab="forum" />
