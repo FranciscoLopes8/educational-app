@@ -33,12 +33,7 @@ export default function Login() {
       setError("Por favor, preenche todos os campos")
       return
     }
-
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      router.push("/dashboard")
-    }, 1000)
+    router.push("/dashboard")
   }
 
   return (

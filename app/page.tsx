@@ -27,25 +27,6 @@ export default function Home() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-primary/5 to-background">
       <div className="w-full max-w-md wf-box p-8">
-        <div className="w-full flex justify-start mb-6">
-          <div className="wf-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m12 19-7-7 7-7" />
-              <path d="M19 12H5" />
-            </svg>
-          </div>
-        </div>
-
         <div className="mb-10 text-center">
           <div className="flex justify-center mb-4">
             <Logo className="w-40 h-40" />
@@ -72,7 +53,7 @@ export default function Home() {
         <button
           onClick={handleStart}
           disabled={loading}
-          className="w-full py-4 rounded-lg text-white font-medium transition-all"
+          className="w-full wf-button mb-8 py-4"
           style={{ backgroundColor: "var(--primary)" }}
         >
           {loading ? "A carregar..." : "Começar agora"}

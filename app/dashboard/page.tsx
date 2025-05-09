@@ -65,7 +65,9 @@ export default function Dashboard() {
               </svg>
             </div>
             <div className="wf-circle w-10 h-10">
-              <span>JS</span>
+              <button onClick={() => router.push("/profile")}>
+                JS
+              </button>
             </div>
           </div>
         </div>
