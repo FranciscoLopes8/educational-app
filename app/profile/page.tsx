@@ -61,7 +61,7 @@ export default function ProfilePage() {
           },
           {
             id: "5",
-            title: "Mestre da Conversação",
+            title: "Mestre da Conversa",
             description: "Completa todos os exercícios de diálogo",
             icon: "/images/sign-language-hello.png",
             earned: false,
@@ -124,50 +124,40 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen pb-24 bg-background">
-      {/* Header */}
-      <header className="header-v7 header-profile p-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <button className="wf-icon bg-white/20 mr-3" onClick={() => router.push("/dashboard")}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m12 19-7-7 7-7" />
-                <path d="M19 12H5" />
-              </svg>
-            </button>
-            <h1 className="text-xl font-bold">Perfil</h1>
-          </div>
-          <button className="wf-icon bg-white/20" onClick={() => setEditMode(!editMode)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-              <path d="m15 5 4 4" />
-            </svg>
-          </button>
-        </div>
-      </header>
+<div className="min-h-screen pb-24 bg-background">
+  {/* Header */}
+  <header className="header-v7 header-profile p-6">
+    <div className="flex items-center justify-between">
+      <div className="flex items-center">
+        <button
+          className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 mr-3"
+          onClick={() => router.push("/dashboard")}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m12 19-7-7 7-7" />
+            <path d="M19 12H5" />
+          </svg>
+        </button>
+        <h1 className="text-xl font-bold">Perfil</h1>
+      </div>
+      <Logo className="w-10 h-10" variant="white" />
+    </div>
+  </header>
+
+
 
       {/* Profile Header */}
-      <div className="px-6 -mt-6">
+      <div className="px-6">
         <div className="wf-box p-6 bg-gradient-to-r from-profile-color/10 to-profile-light/5">
           <div className="flex items-center">
             <div className="relative">
@@ -339,9 +329,6 @@ export default function ProfilePage() {
                   <h3 className="text-lg font-semibold" style={{ color: "var(--profile-color)" }}>
                     Atividade Recente
                   </h3>
-                  <span className="text-sm font-medium" style={{ color: "var(--profile-color)" }}>
-                    Ver tudo
-                  </span>
                 </div>
                 <div className="space-y-4">
                   {[
