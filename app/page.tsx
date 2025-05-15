@@ -30,7 +30,16 @@ export default function Home() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-primary/5 to-background">
-      <div className="w-full max-w-md wf-box p-8">
+      <div className="relative w-full max-w-md wf-box p-8">
+
+        {/* Botão "Saltar" no canto superior direito da box */}
+        <button
+          onClick={goToDashboard}
+          className="absolute top-4 right-4 text-sm text-primary hover:underline"
+        >
+          Saltar
+        </button>
+
         <div className="mb-10 text-center">
           <div className="flex justify-center mb-4">
             <Logo className="w-40 h-40" />
@@ -39,7 +48,7 @@ export default function Home() {
         </div>
 
         <div className="w-full text-center mb-8">
-          <h2 className="text-xl font-semibold text-text mb-2">Bem-vindo de volta</h2>
+          <h2 className="text-xl font-semibold text-text mb-2">Bem-vindo</h2>
           <p className="text-text-secondary">Inicia sessão para continuares a tua jornada de aprendizagem</p>
         </div>
 
@@ -50,7 +59,6 @@ export default function Home() {
         <div className="w-full border-t border-border mb-8"></div>
 
         <div className="w-full text-center mb-6">
-          <h2 className="text-xl font-semibold text-text mb-2">Novo por aqui?</h2>
           <p className="text-text-secondary">Começa a tua jornada de aprendizagem hoje</p>
         </div>
 
@@ -60,15 +68,7 @@ export default function Home() {
           className="w-full wf-button mb-4 py-4"
           style={{ backgroundColor: "var(--primary)" }}
         >
-          {loading ? "A carregar..." : "Começar agora"}
-        </button>
-
-        {/* Botão direto para o Dashboard */}
-        <button
-          onClick={goToDashboard}
-          className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-4 rounded-md"
-        >
-          Ir diretamente para o Dashboard
+          {loading ? "A carregar..." : "Criar conta"}
         </button>
       </div>
     </div>
