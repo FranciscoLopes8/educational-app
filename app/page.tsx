@@ -24,6 +24,10 @@ export default function Home() {
     }, 500)
   }
 
+  const goToDashboard = () => {
+    router.push("/dashboard")
+  }
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-primary/5 to-background">
       <div className="w-full max-w-md wf-box p-8">
@@ -53,13 +57,20 @@ export default function Home() {
         <button
           onClick={handleStart}
           disabled={loading}
-          className="w-full wf-button mb-8 py-4"
+          className="w-full wf-button mb-4 py-4"
           style={{ backgroundColor: "var(--primary)" }}
         >
           {loading ? "A carregar..." : "Começar agora"}
+        </button>
+
+        {/* Botão direto para o Dashboard */}
+        <button
+          onClick={goToDashboard}
+          className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-4 rounded-md"
+        >
+          Ir diretamente para o Dashboard
         </button>
       </div>
     </div>
   )
 }
-
